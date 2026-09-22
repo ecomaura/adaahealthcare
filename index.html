@@ -242,7 +242,7 @@
       height: 76px;
     }
 
-    /* Adaa SVG Brand Logo */
+    /* Brand Logo Image */
     .brand-logo {
       display: flex;
       align-items: center;
@@ -250,9 +250,19 @@
       text-decoration: none;
     }
 
-    .brand-mark {
-      width: 44px;
-      height: 44px;
+    .brand-logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-logo-img-footer {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
     }
 
     .brand-text {
@@ -400,7 +410,6 @@
       font-weight: 600;
     }
 
-    /* Submenu in Mobile */
     .mobile-submenu {
       padding-left: 1rem;
       margin-top: 0.5rem;
@@ -1146,9 +1155,6 @@
       display: block;
     }
 
-    /* Responsive utilities */
-    .d-block { display: block; }
-    .text-teal { color: var(--accent-teal); }
     .alert-success {
       background: #ECFDF5;
       color: #065F46;
@@ -1179,17 +1185,9 @@
   <header class="site-header">
     <div class="container header-main">
       
-      <!-- Brand Logo SVG Implementation -->
+      <!-- Brand Logo using provided image -->
       <a href="#home" class="brand-logo" onclick="navigateTo('home'); return false;">
-        <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Adaa Logo">
-          <!-- Outer Navy Arc -->
-          <path d="M 22 78 C 6 62 6 36 24 20 C 40 5 66 6 80 20 C 74 15 54 13 40 25 C 26 37 26 59 36 71 C 31 74 26 77 22 78 Z" fill="#0F2540" />
-          <!-- Inner Teal Arc -->
-          <path d="M 38 84 C 24 72 23 48 37 34 C 49 22 71 22 82 33 C 76 29 60 28 48 38 C 37 47 37 65 47 75 C 43 78 40 82 38 84 Z" fill="#0D9488" />
-          <!-- Central Cross Accent -->
-          <rect x="52" y="44" width="12" height="30" rx="3" fill="#0D9488" />
-          <rect x="43" y="53" width="30" height="12" rx="3" fill="#0D9488" />
-        </svg>
+        <img src="image/IMG-20260922-WA0002.jpg" alt="Adaa Health Care Trading Logo" class="brand-logo-img" />
         <div class="brand-text">
           <span class="brand-name">ADAA</span>
           <span class="brand-tag">Health Care Trading</span>
@@ -1226,7 +1224,10 @@
   <div class="mobile-nav-overlay" id="mobileOverlay"></div>
   <div class="mobile-nav-panel" id="mobilePanel">
     <div class="mobile-nav-header">
-      <span class="brand-name" style="font-size: 1.2rem;">ADAA</span>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <img src="image/IMG-20260922-WA0002.jpg" alt="Adaa Logo" style="height: 32px; width: auto;" />
+        <span class="brand-name" style="font-size: 1.1rem;">ADAA</span>
+      </div>
       <button class="modal-close-btn" id="closeMobileBtn">&times;</button>
     </div>
     <div class="mobile-nav-links">
@@ -1303,7 +1304,6 @@
           </div>
 
           <div class="category-grid">
-            <!-- 1. Medical Devices -->
             <div class="category-card" onclick="navigateTo('category-medical-devices')">
               <div class="category-card-img-wrap">
                 <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=800&q=80" alt="Medical Devices" class="category-card-img" />
@@ -1315,7 +1315,6 @@
               </div>
             </div>
 
-            <!-- 2. Medicines -->
             <div class="category-card" onclick="navigateTo('category-medicines')">
               <div class="category-card-img-wrap">
                 <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80" alt="Medicines" class="category-card-img" />
@@ -1327,7 +1326,6 @@
               </div>
             </div>
 
-            <!-- 3. Nutritional Supplements -->
             <div class="category-card" onclick="navigateTo('category-supplements')">
               <div class="category-card-img-wrap">
                 <img src="https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=800&q=80" alt="Nutritional Supplements" class="category-card-img" />
@@ -1339,7 +1337,6 @@
               </div>
             </div>
 
-            <!-- 4. Skincare Products -->
             <div class="category-card" onclick="navigateTo('category-skincare')">
               <div class="category-card-img-wrap">
                 <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" alt="Skincare Products" class="category-card-img" />
@@ -1351,7 +1348,6 @@
               </div>
             </div>
 
-            <!-- 5. Derma Cosmetics -->
             <div class="category-card" onclick="navigateTo('category-derma')">
               <div class="category-card-img-wrap">
                 <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Derma Cosmetics" class="category-card-img" />
@@ -1363,7 +1359,6 @@
               </div>
             </div>
 
-            <!-- Business Sourcing Box -->
             <div class="category-card" style="background-color: var(--primary-navy); border-color: var(--primary-navy);" onclick="navigateTo('contact')">
               <div class="category-card-body" style="color: #ffffff; justify-content: center; padding: 2.5rem 2rem;">
                 <span class="section-eyebrow" style="color: #5EEAD4;">Direct Sourcing</span>
@@ -1601,7 +1596,6 @@
       <section class="section-spacing">
         <div class="container">
           <div class="product-grid">
-            <!-- Item 1 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1617,7 +1611,6 @@
               </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1633,7 +1626,6 @@
               </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1682,7 +1674,6 @@
       <section class="section-spacing">
         <div class="container">
           <div class="product-grid">
-            <!-- Item 1 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1698,7 +1689,6 @@
               </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1714,7 +1704,6 @@
               </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1763,7 +1752,6 @@
       <section class="section-spacing">
         <div class="container">
           <div class="product-grid">
-            <!-- Item 1 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1779,7 +1767,6 @@
               </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1795,7 +1782,6 @@
               </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1844,7 +1830,6 @@
       <section class="section-spacing">
         <div class="container">
           <div class="product-grid">
-            <!-- Item 1 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1860,7 +1845,6 @@
               </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1876,7 +1860,6 @@
               </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1925,7 +1908,6 @@
       <section class="section-spacing">
         <div class="container">
           <div class="product-grid">
-            <!-- Item 1 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1941,7 +1923,6 @@
               </div>
             </div>
 
-            <!-- Item 2 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -1957,7 +1938,6 @@
               </div>
             </div>
 
-            <!-- Item 3 -->
             <div class="product-card">
               <div class="product-card-img-wrap">
                 <span class="product-badge">Catalogue Item</span>
@@ -2063,7 +2043,6 @@
       <section class="section-spacing">
         <div class="container">
           <div class="contact-grid">
-            <!-- Left Info Panel -->
             <div class="contact-info-panel">
               <h3 style="margin-bottom: 1.5rem;">Direct Inquiries</h3>
               
@@ -2100,7 +2079,6 @@
               </div>
             </div>
 
-            <!-- Right Contact Form -->
             <div class="contact-form-box">
               <h3 style="margin-bottom: 0.5rem;">Send an Inquiry</h3>
               <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Fill out the form below and our trading desk will respond promptly.</p>
@@ -2212,9 +2190,12 @@
       <div class="footer-grid">
         <!-- Col 1: Brand Info -->
         <div class="footer-col">
-          <div style="margin-bottom: 1rem;">
-            <div class="brand-name" style="color: #ffffff;">ADAA</div>
-            <div class="brand-tag" style="color: #5EEAD4;">Health Care Trading</div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+            <img src="image/IMG-20260922-WA0002.jpg" alt="Adaa Logo" class="brand-logo-img-footer" />
+            <div>
+              <div class="brand-name" style="color: #ffffff; font-size: 1.2rem;">ADAA</div>
+              <div class="brand-tag" style="color: #5EEAD4;">Health Care Trading</div>
+            </div>
           </div>
           <p style="color: #94A3B8; font-size: 0.9rem; line-height: 1.6;">
             A supplier of dependable healthcare equipment and everyday wellness products. We work closely with reputable manufacturers to build a range that professionals and households can rely on.
@@ -2274,10 +2255,8 @@
        CLIENT ROUTING & SCRIPT LOGIC
        ========================================================== -->
   <script>
-    // 1. Set Copyright Year Dynamically
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // 2. Client-Side Page Router
     const routes = [
       'home',
       'about',
@@ -2296,23 +2275,19 @@
         routeId = 'home';
       }
 
-      // Hide all views
       document.querySelectorAll('.view-page').forEach(page => {
         page.classList.remove('active-view');
       });
 
-      // Show selected view
       const targetView = document.getElementById('view-' + routeId);
       if (targetView) {
         targetView.classList.add('active-view');
       }
 
-      // Update Desktop Nav Links
       document.querySelectorAll('.nav-desktop .nav-link').forEach(link => {
         if (link.getAttribute('data-target') === routeId) {
           link.classList.add('active');
         } else {
-          // If in a subcategory, keep 'products' highlighted
           if (routeId.startsWith('category-') && link.getAttribute('data-target') === 'products') {
             link.classList.add('active');
           } else {
@@ -2321,7 +2296,6 @@
         }
       });
 
-      // Update Mobile Drawer Links
       document.querySelectorAll('.mobile-nav-links a').forEach(link => {
         if (link.getAttribute('data-target') === routeId) {
           link.classList.add('active');
@@ -2330,13 +2304,9 @@
         }
       });
 
-      // Close mobile drawer if open
       closeMobileMenu();
-
-      // Scroll smoothly to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Update browser URL hash without jump
       if (history.pushState) {
         history.pushState(null, null, '#' + routeId);
       } else {
@@ -2344,7 +2314,6 @@
       }
     }
 
-    // Handle hash on initial load or back/forward buttons
     function handleHashChange() {
       const hash = window.location.hash.replace('#', '');
       if (hash && routes.includes(hash)) {
@@ -2357,7 +2326,6 @@
     window.addEventListener('hashchange', handleHashChange);
     window.addEventListener('DOMContentLoaded', handleHashChange);
 
-    // 3. Mobile Navigation Drawer Controls
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeMobileBtn = document.getElementById('closeMobileBtn');
     const mobilePanel = document.getElementById('mobilePanel');
@@ -2379,7 +2347,6 @@
     closeMobileBtn.addEventListener('click', closeMobileMenu);
     mobileOverlay.addEventListener('click', closeMobileMenu);
 
-    // Mobile nav links router binding
     document.querySelectorAll('.mobile-link').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -2388,7 +2355,6 @@
       });
     });
 
-    // Desktop nav links router binding
     document.querySelectorAll('.nav-desktop .nav-link').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -2397,7 +2363,6 @@
       });
     });
 
-    // 4. Product Enquiry Modal Logic
     let currentEnquiryProduct = "";
 
     function openEnquiryModal(productName, categoryName) {
@@ -2407,7 +2372,6 @@
       document.getElementById('modalSuccessMessage').style.display = 'none';
       document.getElementById('productEnquiryForm').reset();
       
-      // Configure WhatsApp button with specific product text
       const waButton = document.getElementById('modalWhatsAppBtn');
       const waMessage = `Hello Adaa Health Care Trading, I am interested in ${productName}. Please share availability and details.`;
       waButton.onclick = function() {
@@ -2423,7 +2387,6 @@
       modal.classList.remove('active');
     }
 
-    // Close modal on click outside card
     window.addEventListener('click', function(e) {
       const modal = document.getElementById('enquiryModal');
       if (e.target === modal) {
@@ -2449,3 +2412,4 @@
   </script>
 </body>
 </html>
+
