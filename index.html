@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adaa Health Care Trading | Care You Can Count On</title>
+  <meta name="description" content="Adaa Health Care Trading is a trusted supplier of dependable healthcare equipment, medical products, wellness essentials, and derma cosmetics for professionals, retailers, and households." />
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       CSS VARIABLES & THEME FOUNDATION
+       Navy Blue + Teal Palette with clean corporate neutrals
+       ========================================================== */
+    :root {
+      --primary-navy: #0F2540;
+      --primary-navy-dark: #0A192B;
+      --primary-navy-light: #1A365D;
+      --accent-teal: #0D9488;
+      --accent-teal-hover: #0F766E;
+      --accent-teal-light: #F0FDFA;
+      --accent-teal-subtle: #CCFBF1;
+      
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --text-light: #94A3B8;
+      
+      --bg-white: #FFFFFF;
+      --bg-surface: #F8FAFC;
+      --bg-subtle: #F1F5F9;
+      --border-color: #E2E8F0;
+      --border-focus: #0D9488;
+      
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      
+      --shadow-subtle: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-card: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+      --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.04);
+      --max-width: 1240px;
+      --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-stack);
+      color: var(--text-main);
+      background-color: var(--bg-white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================
+       TYPOGRAPHY
+       ========================================================== */
+    h1, h2, h3, h4 {
+      color: var(--primary-navy);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.35rem; }
+    h4 { font-size: 1.1rem; }
+
+    @media (min-width: 768px) {
+      h1 { font-size: 3.25rem; }
+      h2 { font-size: 2.25rem; }
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .lead-text {
+      font-size: 1.15rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--accent-teal);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ==========================================================
+       BUTTONS & CONTROLS
+       ========================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-teal);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background-color: var(--accent-teal-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--primary-navy);
+      border-color: var(--border-color);
+    }
+    .btn-secondary:hover {
+      background-color: var(--bg-subtle);
+      border-color: var(--text-light);
+    }
+
+    .btn-navy {
+      background-color: var(--primary-navy);
+      color: #ffffff;
+    }
+    .btn-navy:hover {
+      background-color: var(--primary-navy-dark);
+    }
+
+    .btn-white {
+      background-color: #ffffff;
+      color: var(--primary-navy);
+    }
+    .btn-white:hover {
+      background-color: var(--bg-subtle);
+    }
+
+    .btn-outline-white {
+      background-color: transparent;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .btn-outline-white:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: #ffffff;
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* ==========================================================
+       HEADER & NAVIGATION
+       ========================================================== */
+    header.site-header {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .top-bar {
+      background-color: var(--primary-navy-dark);
+      color: #E2E8F0;
+      font-size: 0.8125rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar-notice {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .top-bar-badge {
+      background-color: var(--accent-teal);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+
+    .header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    /* Adaa SVG Brand Logo */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--primary-navy);
+      line-height: 1.1;
+    }
+
+    .brand-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+    }
+
+    nav.nav-desktop {
+      display: none;
+    }
+
+    @media (min-width: 992px) {
+      nav.nav-desktop {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--primary-navy);
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-teal);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent-teal);
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    @media (min-width: 992px) {
+      .nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+      background: none;
+      border: 1px solid var(--border-color);
+      padding: 0.5rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--primary-navy);
+    }
+
+    @media (min-width: 992px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    /* Mobile Drawer */
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(15, 37, 64, 0.6);
+      z-index: 1050;
+    }
+
+    .mobile-nav-panel {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      height: 100%;
+      background-color: #ffffff;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-nav-panel.open {
+      right: 0;
+    }
+
+    .mobile-nav-overlay.open {
+      display: block;
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .mobile-nav-links a {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--primary-navy);
+      padding: 0.25rem 0;
+    }
+
+    .mobile-nav-links a.active {
+      color: var(--accent-teal);
+      font-weight: 600;
+    }
+
+    /* Submenu in Mobile */
+    .mobile-submenu {
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-left: 2px solid var(--border-color);
+    }
+
+    .mobile-submenu a {
+      font-size: 0.9rem !important;
+      color: var(--text-muted) !important;
+    }
+
+    /* ==========================================================
+       PAGE VIEWS & ROUTING SYSTEM
+       ========================================================== */
+    .view-page {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease-in-out;
+    }
+
+    .view-page.active-view {
+      display: block;
+      opacity: 1;
+    }
+
+    /* ==========================================================
+       HERO SECTION
+       ========================================================== */
+    .hero-section {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, #EDF4F9 100%);
+      padding: 4rem 0 5rem;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+
+    .hero-content h1 {
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-content .lead-text {
+      margin-bottom: 2rem;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-card-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      background-color: var(--bg-subtle);
+    }
+
+    .hero-card-caption {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background-color: #ffffff;
+    }
+
+    .hero-card-title {
+      font-weight: 700;
+      color: var(--primary-navy);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.25rem 0;
+      text-align: center;
+    }
+
+    .trust-strip-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary-navy);
+      letter-spacing: 0.02em;
+    }
+
+    .trust-divider {
+      color: var(--accent-teal);
+      font-weight: bold;
+    }
+
+    /* ==========================================================
+       SECTION COMMONS
+       ========================================================== */
+    .section-spacing {
+      padding: 5rem 0;
+    }
+
+    .section-spacing-sm {
+      padding: 3rem 0;
+    }
+
+    .bg-surface {
+      background-color: var(--bg-surface);
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-header.text-center {
+      text-align: center;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-header h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    /* ==========================================================
+       CATEGORY GRID CARDS
+       ========================================================== */
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .category-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      border-color: var(--accent-teal);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .category-card-img-wrap {
+      height: 200px;
+      overflow: hidden;
+      background-color: var(--bg-subtle);
+    }
+
+    .category-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .category-card:hover .category-card-img {
+      transform: scale(1.03);
+    }
+
+    .category-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-card-body h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .category-card-body p {
+      font-size: 0.925rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .category-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-teal);
+      font-weight: 600;
+      font-size: 0.875rem;
+      margin-top: auto;
+    }
+
+    /* ==========================================================
+       PRODUCT LISTING & CARDS
+       ========================================================== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 600px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .product-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-card);
+    }
+
+    .product-card-img-wrap {
+      position: relative;
+      height: 220px;
+      background-color: var(--bg-surface);
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: var(--primary-navy);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .product-body {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent-teal);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+
+    .product-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
+    }
+
+    .product-description {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+
+    .product-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* ==========================================================
+       KEY PILLARS & VALUE PROPOSITIONS
+       ========================================================== */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .pillar-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .pillar-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .pillar-item {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius-md);
+    }
+
+    .pillar-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent-teal-light);
+      color: var(--accent-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .pillar-item h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-item p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================
+       CATEGORY HEADER BANNER
+       ========================================================== */
+    .category-hero {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 3rem 0;
+    }
+
+    .category-hero-inner {
+      max-width: 800px;
+    }
+
+    .category-hero-nav {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .category-hero-nav a {
+      color: var(--accent-teal);
+      font-weight: 500;
+    }
+
+    .category-pills-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-top: 1.5rem;
+      scrollbar-width: thin;
+    }
+
+    .category-pill {
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      color: var(--primary-navy);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .category-pill:hover,
+    .category-pill.active {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-color: var(--primary-navy);
+    }
+
+    /* ==========================================================
+       CONTACT & FORMS
+       ========================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 992px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1.25fr;
+      }
+    }
+
+    .contact-info-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-teal);
+      flex-shrink: 0;
+    }
+
+    .contact-text h4 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-text p {
+      font-size: 0.925rem;
+      margin-bottom: 0;
+    }
+
+    .contact-form-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary-navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background-color: #ffffff;
+      color: var(--text-main);
+      font-size: 0.9375rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ==========================================================
+       DARK NAVY CTA SECTION
+       ========================================================== */
+    .cta-dark-section {
+      background-color: var(--primary-navy);
+      color: #ffffff;
+      padding: 4.5rem 0;
+      position: relative;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .cta-dark-section h2 {
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .cta-dark-section p {
+      color: #CBD5E1;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ==========================================================
+       FOOTER
+       ========================================================== */
+    footer.site-footer {
+      background-color: var(--primary-navy-dark);
+      color: #CBD5E1;
+      font-size: 0.875rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-top {
+      padding: 4.5rem 0 3rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
+      }
+    }
+
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-links a {
+      color: #94A3B8;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.8125rem;
+      color: #64748B;
+    }
+
+    .footer-bottom-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    .footer-legal-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-legal-links a:hover {
+      color: #94A3B8;
+    }
+
+    /* ==========================================================
+       MODAL: PRODUCT ENQUIRY
+       ========================================================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 37, 64, 0.7);
+      backdrop-filter: blur(2px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      max-width: 520px;
+      width: 100%;
+      box-shadow: var(--shadow-hover);
+      overflow: hidden;
+      animation: modalFadeIn 0.2s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--bg-surface);
+    }
+
+    .modal-header h3 {
+      font-size: 1.15rem;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .modal-product-summary {
+      background-color: var(--accent-teal-light);
+      border: 1px solid var(--accent-teal-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    .modal-product-summary strong {
+      color: var(--primary-navy);
+      display: block;
+    }
+
+    /* Responsive utilities */
+    .d-block { display: block; }
+    .text-teal { color: var(--accent-teal); }
+    .alert-success {
+      background: #ECFDF5;
+      color: #065F46;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid #A7F3D0;
+      margin-bottom: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Notification Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-notice">
+        <span class="top-bar-badge">Trading & Distribution</span>
+        <span>Dependable Healthcare Supply for Professionals, Retailers & Households</span>
+      </div>
+      <div class="d-none d-md-block" style="font-size: 0.8rem;">
+        Care You Can Count On
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Site Header -->
+  <header class="site-header">
+    <div class="container header-main">
+      
+      <!-- Brand Logo SVG Implementation -->
+      <a href="#home" class="brand-logo" onclick="navigateTo('home'); return false;">
+        <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Adaa Logo">
+          <!-- Outer Navy Arc -->
+          <path d="M 22 78 C 6 62 6 36 24 20 C 40 5 66 6 80 20 C 74 15 54 13 40 25 C 26 37 26 59 36 71 C 31 74 26 77 22 78 Z" fill="#0F2540" />
+          <!-- Inner Teal Arc -->
+          <path d="M 38 84 C 24 72 23 48 37 34 C 49 22 71 22 82 33 C 76 29 60 28 48 38 C 37 47 37 65 47 75 C 43 78 40 82 38 84 Z" fill="#0D9488" />
+          <!-- Central Cross Accent -->
+          <rect x="52" y="44" width="12" height="30" rx="3" fill="#0D9488" />
+          <rect x="43" y="53" width="30" height="12" rx="3" fill="#0D9488" />
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">ADAA</span>
+          <span class="brand-tag">Health Care Trading</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="nav-desktop">
+        <a href="#home" class="nav-link active" data-target="home">Home</a>
+        <a href="#about" class="nav-link" data-target="about">About Us</a>
+        <a href="#products" class="nav-link" data-target="products">Products</a>
+        <a href="#why-us" class="nav-link" data-target="why-us">Why Us</a>
+        <a href="#contact" class="nav-link" data-target="contact">Contact</a>
+      </nav>
+
+      <!-- Desktop CTA Button -->
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-primary btn-sm" onclick="navigateTo('contact'); return false;">Get in Touch</a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav-panel" id="mobilePanel">
+    <div class="mobile-nav-header">
+      <span class="brand-name" style="font-size: 1.2rem;">ADAA</span>
+      <button class="modal-close-btn" id="closeMobileBtn">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="#home" class="mobile-link" data-target="home">Home</a>
+      <a href="#about" class="mobile-link" data-target="about">About Us</a>
+      <a href="#products" class="mobile-link" data-target="products">Products Overview</a>
+      
+      <div class="mobile-submenu">
+        <a href="#category-medical-devices" class="mobile-link" data-target="category-medical-devices">Medical Devices</a>
+        <a href="#category-medicines" class="mobile-link" data-target="category-medicines">Medicines</a>
+        <a href="#category-supplements" class="mobile-link" data-target="category-supplements">Nutritional Supplements</a>
+        <a href="#category-skincare" class="mobile-link" data-target="category-skincare">Skincare Products</a>
+        <a href="#category-derma" class="mobile-link" data-target="category-derma">Derma Cosmetics</a>
+      </div>
+
+      <a href="#why-us" class="mobile-link" data-target="why-us">Why Us</a>
+      <a href="#contact" class="mobile-link" data-target="contact">Contact</a>
+      
+      <div style="margin-top: 1.5rem;">
+        <a href="#contact" class="btn btn-primary btn-full" onclick="navigateTo('contact');">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================
+         VIEW: HOME
+         ========================================================== -->
+    <section id="view-home" class="view-page active-view">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <span class="section-eyebrow">Adaa Health Care Trading</span>
+            <h1>Better health starts with the right products</h1>
+            <p class="lead-text">
+              From precision medical devices to healthcare and wellness essentials, we bring together dependable products for professionals, retailers and households.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="navigateTo('products')">Browse Products</button>
+              <button class="btn btn-secondary" onclick="navigateTo('contact')">Talk to Our Team</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-card">
+              <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1000&q=80" alt="Dependable Medical and Health Care Supplies" class="hero-card-img" />
+              <div class="hero-card-caption">
+                <div class="hero-card-title">Care You Can Count On</div>
+                <div class="hero-card-sub">Wholesale distribution and dependable retail healthcare sourcing.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compact Trust Strip -->
+      <div class="trust-strip">
+        <div class="container trust-strip-inner">
+          <span>Quality Products</span>
+          <span class="trust-divider">•</span>
+          <span>Reliable Support</span>
+          <span class="trust-divider">•</span>
+          <span>Professional Service</span>
+        </div>
+      </div>
+
+      <!-- Core Categories Overview -->
+      <section class="section-spacing">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-eyebrow">Portfolio Range</span>
+            <h2>Our Core Categories</h2>
+            <p>Supplying essential health, diagnostic, and wellness lines from reputable manufacturers.</p>
+          </div>
+
+          <div class="category-grid">
+            <!-- 1. Medical Devices -->
+            <div class="category-card" onclick="navigateTo('category-medical-devices')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=800&q=80" alt="Medical Devices" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <h3>Medical Devices</h3>
+                <p>Monitors, diagnostic tools and home-care equipment for clinical and personal use.</p>
+                <span class="category-card-link">View Category &rarr;</span>
+              </div>
+            </div>
+
+            <!-- 2. Medicines -->
+            <div class="category-card" onclick="navigateTo('category-medicines')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80" alt="Medicines" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <h3>Medicines</h3>
+                <p>Healthcare and pharmacy products procured directly from established manufacturers.</p>
+                <span class="category-card-link">View Category &rarr;</span>
+              </div>
+            </div>
+
+            <!-- 3. Nutritional Supplements -->
+            <div class="category-card" onclick="navigateTo('category-supplements')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=800&q=80" alt="Nutritional Supplements" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <h3>Nutritional Supplements</h3>
+                <p>Vitamins, minerals and dietary nutritional products supporting everyday vitality.</p>
+                <span class="category-card-link">View Category &rarr;</span>
+              </div>
+            </div>
+
+            <!-- 4. Skincare Products -->
+            <div class="category-card" onclick="navigateTo('category-skincare')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" alt="Skincare Products" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <h3>Skincare Products</h3>
+                <p>Dedicated skincare formulations built for personal care routines and professional use.</p>
+                <span class="category-card-link">View Category &rarr;</span>
+              </div>
+            </div>
+
+            <!-- 5. Derma Cosmetics -->
+            <div class="category-card" onclick="navigateTo('category-derma')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Derma Cosmetics" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <h3>Derma Cosmetics</h3>
+                <p>Specialized skincare and cosmetic products meeting targeted dermatological needs.</p>
+                <span class="category-card-link">View Category &rarr;</span>
+              </div>
+            </div>
+
+            <!-- Business Sourcing Box -->
+            <div class="category-card" style="background-color: var(--primary-navy); border-color: var(--primary-navy);" onclick="navigateTo('contact')">
+              <div class="category-card-body" style="color: #ffffff; justify-content: center; padding: 2.5rem 2rem;">
+                <span class="section-eyebrow" style="color: #5EEAD4;">Direct Sourcing</span>
+                <h3 style="color: #ffffff; margin-bottom: 0.75rem;">Wholesale & Trade Inquiries</h3>
+                <p style="color: #CBD5E1; margin-bottom: 1.5rem;">Looking for reliable bulk supply agreements, institutional purchasing, or specialized catalogue lines?</p>
+                <span class="btn btn-primary btn-sm" style="align-self: flex-start;">Talk to Our Team</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Pillars Brief -->
+      <section class="section-spacing bg-surface">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="section-eyebrow">The Adaa Standard</span>
+            <h2>Care You Can Count On</h2>
+            <p>Our commitment to consistent quality, clear communication, and reliable supply lines.</p>
+          </div>
+
+          <div class="pillar-grid">
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Quality First</h3>
+              <p>We work exclusively with reputable manufacturers committed to strict standards and consistency.</p>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+              </div>
+              <h3>Forward-Thinking</h3>
+              <p>Constantly reviewing industry advancements to supply contemporary healthcare solutions.</p>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h3>Real Support</h3>
+              <p>Knowledgeable, responsive client support to assist with stock inquiries and procurement.</p>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Customer Focused</h3>
+              <p>Flexible supply options structured for individual clinics, pharmacies, and commercial partners.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         VIEW: ABOUT US
+         ========================================================== -->
+    <section id="view-about" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#home" onclick="navigateTo('home'); return false;">Home</a> / <span>About Us</span>
+          </div>
+          <span class="section-eyebrow">About Adaa Health Care Trading</span>
+          <h1>Dependable Healthcare Sourcing & Distribution</h1>
+          <p class="lead-text">
+            Adaa Health Care Trading is a supplier of dependable healthcare equipment and everyday wellness products. We work closely with reputable manufacturers to build a range that professionals and households can rely on.
+          </p>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="hero-grid" style="align-items: flex-start;">
+            <div>
+              <span class="section-eyebrow">Our Approach</span>
+              <h2>A Bridge Between Proven Manufacturers and Healthcare Users</h2>
+              <p>
+                In an evolving healthcare environment, dependability is non-negotiable. Whether providing diagnostic equipment to clinics or wellness formulations to households, Adaa Health Care Trading evaluates every product channel for dependability, compliance, and sustained availability.
+              </p>
+              <p>
+                We collaborate with manufacturers who share our dedication to reliability, giving our trade partners and individual customers confidence in every order.
+              </p>
+            </div>
+            <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem;">
+              <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">What Defines Our Operations</h3>
+              
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div>
+                  <h4 style="color: var(--accent-teal); font-size: 0.95rem; margin-bottom: 0.25rem;">Carefully Selected Products</h4>
+                  <p style="font-size: 0.875rem; margin: 0;">Items chosen through rigorous supplier vetting focused on authentic build and ingredient integrity.</p>
+                </div>
+                <div>
+                  <h4 style="color: var(--accent-teal); font-size: 0.95rem; margin-bottom: 0.25rem;">Knowledgeable Support</h4>
+                  <p style="font-size: 0.875rem; margin: 0;">A dedicated team available to discuss specifications, orders, and product availability.</p>
+                </div>
+                <div>
+                  <h4 style="color: var(--accent-teal); font-size: 0.95rem; margin-bottom: 0.25rem;">Reliable Supply</h4>
+                  <p style="font-size: 0.875rem; margin: 0;">Organized distribution protocols to maintain consistent fulfillment for retail and clinical partners.</p>
+                </div>
+                <div>
+                  <h4 style="color: var(--accent-teal); font-size: 0.95rem; margin-bottom: 0.25rem;">Wholesale & Retail Options</h4>
+                  <p style="font-size: 0.875rem; margin: 0;">Scalable purchase pathways catering to medical establishments, stores, and personal buyers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         VIEW: PRODUCTS OVERVIEW
+         ========================================================== -->
+    <section id="view-products" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#home" onclick="navigateTo('home'); return false;">Home</a> / <span>Products</span>
+          </div>
+          <span class="section-eyebrow">Catalogue Overview</span>
+          <h1>Healthcare Product Lines</h1>
+          <p class="lead-text">
+            Explore our comprehensive range spanning clinical medical devices, essential medicines, nutrition, and dermatological formulations.
+          </p>
+
+          <div class="category-pills-bar">
+            <button class="category-pill active" onclick="navigateTo('products')">All Categories</button>
+            <button class="category-pill" onclick="navigateTo('category-medical-devices')">Medical Devices</button>
+            <button class="category-pill" onclick="navigateTo('category-medicines')">Medicines</button>
+            <button class="category-pill" onclick="navigateTo('category-supplements')">Nutritional Supplements</button>
+            <button class="category-pill" onclick="navigateTo('category-skincare')">Skincare Products</button>
+            <button class="category-pill" onclick="navigateTo('category-derma')">Derma Cosmetics</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="category-grid">
+            <div class="category-card" onclick="navigateTo('category-medical-devices')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=800&q=80" alt="Medical Devices" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <span class="product-category-tag">Category 01</span>
+                <h3>Medical Devices</h3>
+                <p>Monitors, diagnostic tools and home-care equipment.</p>
+                <span class="btn btn-secondary btn-sm">Explore Devices &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="navigateTo('category-medicines')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=800&q=80" alt="Medicines" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <span class="product-category-tag">Category 02</span>
+                <h3>Medicines</h3>
+                <p>Healthcare/pharmacy products from established manufacturers.</p>
+                <span class="btn btn-secondary btn-sm">Explore Medicines &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="navigateTo('category-supplements')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=800&q=80" alt="Nutritional Supplements" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <span class="product-category-tag">Category 03</span>
+                <h3>Nutritional Supplements</h3>
+                <p>Vitamins, minerals and nutritional products.</p>
+                <span class="btn btn-secondary btn-sm">Explore Supplements &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="navigateTo('category-skincare')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" alt="Skincare Products" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <span class="product-category-tag">Category 04</span>
+                <h3>Skincare Products</h3>
+                <p>Skincare products for personal and professional use.</p>
+                <span class="btn btn-secondary btn-sm">Explore Skincare &rarr;</span>
+              </div>
+            </div>
+
+            <div class="category-card" onclick="navigateTo('category-derma')">
+              <div class="category-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Derma Cosmetics" class="category-card-img" />
+              </div>
+              <div class="category-card-body">
+                <span class="product-category-tag">Category 05</span>
+                <h3>Derma Cosmetics</h3>
+                <p>Specialized skincare and cosmetic products.</p>
+                <span class="btn btn-secondary btn-sm">Explore Derma &rarr;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         CATEGORY VIEW 1: MEDICAL DEVICES
+         ========================================================== -->
+    <section id="view-category-medical-devices" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#products" onclick="navigateTo('products'); return false;">Products</a> / <span>Medical Devices</span>
+          </div>
+          <span class="section-eyebrow">Category 01</span>
+          <h1>Medical Devices</h1>
+          <p class="lead-text">
+            Monitors, diagnostic tools and home-care equipment. Engineered to support clinicians, assisted living care, and personal health monitoring.
+          </p>
+
+          <div class="category-pills-bar">
+            <button class="category-pill" onclick="navigateTo('products')">All Categories</button>
+            <button class="category-pill active" onclick="navigateTo('category-medical-devices')">Medical Devices</button>
+            <button class="category-pill" onclick="navigateTo('category-medicines')">Medicines</button>
+            <button class="category-pill" onclick="navigateTo('category-supplements')">Nutritional Supplements</button>
+            <button class="category-pill" onclick="navigateTo('category-skincare')">Skincare Products</button>
+            <button class="category-pill" onclick="navigateTo('category-derma')">Derma Cosmetics</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="product-grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80" alt="Digital Blood Pressure Monitor" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Diagnostic Tools</span>
+                <h3 class="product-title">Digital Blood Pressure Monitor</h3>
+                <p class="product-description">Automated upper-arm diagnostic monitor designed for accurate readings across clinical and home settings.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Digital Blood Pressure Monitor', 'Medical Devices')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80" alt="Infrared Forehead Thermometer" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Diagnostic Tools</span>
+                <h3 class="product-title">Infrared Forehead Thermometer</h3>
+                <p class="product-description">Non-contact rapid temperature measurement device for sanitary screening in medical and institutional environments.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Infrared Forehead Thermometer', 'Medical Devices')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=600&q=80" alt="Fingertip Pulse Oximeter" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Home-Care Equipment</span>
+                <h3 class="product-title">Fingertip Pulse Oximeter</h3>
+                <p class="product-description">Compact portable device for non-invasive spot-checking of oxygen saturation (SpO2) and pulse rate.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Fingertip Pulse Oximeter', 'Medical Devices')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         CATEGORY VIEW 2: MEDICINES
+         ========================================================== -->
+    <section id="view-category-medicines" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#products" onclick="navigateTo('products'); return false;">Products</a> / <span>Medicines</span>
+          </div>
+          <span class="section-eyebrow">Category 02</span>
+          <h1>Medicines</h1>
+          <p class="lead-text">
+            Healthcare and pharmacy products from established manufacturers. Sourced through verified distribution channels to ensure authenticity.
+          </p>
+
+          <div class="category-pills-bar">
+            <button class="category-pill" onclick="navigateTo('products')">All Categories</button>
+            <button class="category-pill" onclick="navigateTo('category-medical-devices')">Medical Devices</button>
+            <button class="category-pill active" onclick="navigateTo('category-medicines')">Medicines</button>
+            <button class="category-pill" onclick="navigateTo('category-supplements')">Nutritional Supplements</button>
+            <button class="category-pill" onclick="navigateTo('category-skincare')">Skincare Products</button>
+            <button class="category-pill" onclick="navigateTo('category-derma')">Derma Cosmetics</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="product-grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80" alt="Essential Pharmacy Supplies" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Pharmacy Range</span>
+                <h3 class="product-title">Essential Healthcare Formulations</h3>
+                <p class="product-description">Core OTC and pharmacy essentials supplied in compliance with local commercial regulations.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Essential Healthcare Formulations', 'Medicines')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80" alt="Antiseptic Solutions" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Clinical Essentials</span>
+                <h3 class="product-title">Medical Antiseptic & Hygiene Range</h3>
+                <p class="product-description">Hospital and home-care grade topical antiseptics for sanitization and standard medical hygiene protocols.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Medical Antiseptic & Hygiene Range', 'Medicines')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1550572017-ed20015adc08?auto=format&fit=crop&w=600&q=80" alt="Respiratory Care Solutions" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Respiratory Care</span>
+                <h3 class="product-title">Inhalation & Saline Solutions</h3>
+                <p class="product-description">Standard sterile saline preparations suitable for nebulization and clinical respiratory maintenance.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Inhalation & Saline Solutions', 'Medicines')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         CATEGORY VIEW 3: NUTRITIONAL SUPPLEMENTS
+         ========================================================== -->
+    <section id="view-category-supplements" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#products" onclick="navigateTo('products'); return false;">Products</a> / <span>Nutritional Supplements</span>
+          </div>
+          <span class="section-eyebrow">Category 03</span>
+          <h1>Nutritional Supplements</h1>
+          <p class="lead-text">
+            Vitamins, minerals and nutritional products formulated to complement daily wellness, immune vitality, and balanced nutrition.
+          </p>
+
+          <div class="category-pills-bar">
+            <button class="category-pill" onclick="navigateTo('products')">All Categories</button>
+            <button class="category-pill" onclick="navigateTo('category-medical-devices')">Medical Devices</button>
+            <button class="category-pill" onclick="navigateTo('category-medicines')">Medicines</button>
+            <button class="category-pill active" onclick="navigateTo('category-supplements')">Nutritional Supplements</button>
+            <button class="category-pill" onclick="navigateTo('category-skincare')">Skincare Products</button>
+            <button class="category-pill" onclick="navigateTo('category-derma')">Derma Cosmetics</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="product-grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=600&q=80" alt="Daily Multivitamin Complex" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Vitamins & Minerals</span>
+                <h3 class="product-title">Complete Multivitamin Complex</h3>
+                <p class="product-description">Balanced blend of essential vitamins and trace minerals designed to support overall vitality and active lifestyles.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Complete Multivitamin Complex', 'Nutritional Supplements')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80" alt="Vitamin C & Zinc Support" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Immune Support</span>
+                <h3 class="product-title">Vitamin C + Zinc Formulations</h3>
+                <p class="product-description">Targeted daily micronutrient combination known for cellular protection and immune function support.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Vitamin C + Zinc Formulations', 'Nutritional Supplements')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1550572017-ed20015adc08?auto=format&fit=crop&w=600&q=80" alt="Omega-3 Fatty Acids" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Cardiovascular Wellness</span>
+                <h3 class="product-title">Purified Omega-3 Fish Oil</h3>
+                <p class="product-description">High-potency EPA and DHA dietary softgels sourced through refined, quality-controlled extraction processes.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Purified Omega-3 Fish Oil', 'Nutritional Supplements')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         CATEGORY VIEW 4: SKINCARE PRODUCTS
+         ========================================================== -->
+    <section id="view-category-skincare" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#products" onclick="navigateTo('products'); return false;">Products</a> / <span>Skincare Products</span>
+          </div>
+          <span class="section-eyebrow">Category 04</span>
+          <h1>Skincare Products</h1>
+          <p class="lead-text">
+            Skincare products for personal and professional use. Formulated for everyday barrier defense, hydration, and soothing care.
+          </p>
+
+          <div class="category-pills-bar">
+            <button class="category-pill" onclick="navigateTo('products')">All Categories</button>
+            <button class="category-pill" onclick="navigateTo('category-medical-devices')">Medical Devices</button>
+            <button class="category-pill" onclick="navigateTo('category-medicines')">Medicines</button>
+            <button class="category-pill" onclick="navigateTo('category-supplements')">Nutritional Supplements</button>
+            <button class="category-pill active" onclick="navigateTo('category-skincare')">Skincare Products</button>
+            <button class="category-pill" onclick="navigateTo('category-derma')">Derma Cosmetics</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="product-grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80" alt="Daily Barrier Repair Cream" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Moisture & Defense</span>
+                <h3 class="product-title">Barrier Repair Moisturizing Cream</h3>
+                <p class="product-description">Hydrating formulation suitable for dry and sensitive skin conditions, restoring skin balance.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Barrier Repair Moisturizing Cream', 'Skincare Products')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80" alt="Gentle Skin Cleanser" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Cleansing</span>
+                <h3 class="product-title">Gentle Dermatological Cleanser</h3>
+                <p class="product-description">Non-irritating, soap-free cleansing wash created for delicate or sensitive skin types.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Gentle Dermatological Cleanser', 'Skincare Products')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80" alt="Broad Spectrum Sunscreen" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Photoprotection</span>
+                <h3 class="product-title">Broad Spectrum Sunscreen SPF 50+</h3>
+                <p class="product-description">High-level protection against UVA/UVB rays, developed with a light, easily absorbed finish.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Broad Spectrum Sunscreen SPF 50+', 'Skincare Products')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         CATEGORY VIEW 5: DERMA COSMETICS
+         ========================================================== -->
+    <section id="view-category-derma" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#products" onclick="navigateTo('products'); return false;">Products</a> / <span>Derma Cosmetics</span>
+          </div>
+          <span class="section-eyebrow">Category 05</span>
+          <h1>Derma Cosmetics</h1>
+          <p class="lead-text">
+            Specialized skincare and cosmetic products. Blending clinical dermatological insights with cosmetic refinement for targeted skin applications.
+          </p>
+
+          <div class="category-pills-bar">
+            <button class="category-pill" onclick="navigateTo('products')">All Categories</button>
+            <button class="category-pill" onclick="navigateTo('category-medical-devices')">Medical Devices</button>
+            <button class="category-pill" onclick="navigateTo('category-medicines')">Medicines</button>
+            <button class="category-pill" onclick="navigateTo('category-supplements')">Nutritional Supplements</button>
+            <button class="category-pill" onclick="navigateTo('category-skincare')">Skincare Products</button>
+            <button class="category-pill active" onclick="navigateTo('category-derma')">Derma Cosmetics</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="product-grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" alt="Advanced Derma Treatment Serum" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Targeted Serum</span>
+                <h3 class="product-title">Hyaluronic Acid Concentrated Serum</h3>
+                <p class="product-description">Multi-depth hydration formula created to support professional aesthetic treatment post-care.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Hyaluronic Acid Concentrated Serum', 'Derma Cosmetics')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80" alt="Antioxidant Brightening Treatment" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Skin Renewal</span>
+                <h3 class="product-title">Antioxidant Renewal Treatment</h3>
+                <p class="product-description">Concentrated cosmetic formulation with stabilized Vitamin C designed for skin tone clarity and texture refinement.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Antioxidant Renewal Treatment', 'Derma Cosmetics')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card">
+              <div class="product-card-img-wrap">
+                <span class="product-badge">Catalogue Item</span>
+                <img src="https://images.unsplash.com/photo-1608248597359-0524458f4a9b?auto=format&fit=crop&w=600&q=80" alt="Post-Procedure Soothing Balm" class="product-card-img" />
+              </div>
+              <div class="product-body">
+                <span class="product-category-tag">Clinical Recovery</span>
+                <h3 class="product-title">Post-Procedure Calming Balm</h3>
+                <p class="product-description">Specialized restorative ointment for sensitized skin undergoing dermatological care or surface peeling.</p>
+                <div class="product-footer">
+                  <button class="btn btn-primary btn-sm btn-full" onclick="openEnquiryModal('Post-Procedure Calming Balm', 'Derma Cosmetics')">ENQUIRE NOW</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         VIEW: WHY US
+         ========================================================== -->
+    <section id="view-why-us" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#home" onclick="navigateTo('home'); return false;">Home</a> / <span>Why Us</span>
+          </div>
+          <span class="section-eyebrow">The Adaa Commitment</span>
+          <h1>Why Choose Adaa Health Care Trading</h1>
+          <p class="lead-text">
+            A trading relationship built on transparency, product integrity, and steady commercial dependability.
+          </p>
+        </div>
+      </div>
+
+      <div class="trust-strip">
+        <div class="container trust-strip-inner">
+          <span>Quality Products</span>
+          <span class="trust-divider">•</span>
+          <span>Reliable Support</span>
+          <span class="trust-divider">•</span>
+          <span>Professional Service</span>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="pillar-grid">
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Quality First</h3>
+              <p>We work exclusively with reputable manufacturers committed to strict standards and consistency.</p>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+              </div>
+              <h3>Forward-Thinking</h3>
+              <p>Constantly reviewing industry advancements to supply contemporary healthcare solutions.</p>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h3>Real Support</h3>
+              <p>Knowledgeable, responsive client support to assist with stock inquiries and procurement.</p>
+            </div>
+
+            <div class="pillar-item">
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Customer Focused</h3>
+              <p>Flexible supply options structured for individual clinics, pharmacies, and commercial partners.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ==========================================================
+         VIEW: CONTACT
+         ========================================================== -->
+    <section id="view-contact" class="view-page">
+      <div class="category-hero">
+        <div class="container category-hero-inner">
+          <div class="category-hero-nav">
+            <a href="#home" onclick="navigateTo('home'); return false;">Home</a> / <span>Contact</span>
+          </div>
+          <span class="section-eyebrow">Connect With Us</span>
+          <h1>Contact Adaa Health Care Trading</h1>
+          <p class="lead-text">
+            Reach out directly for catalogue requests, wholesale inquiries, availability checks, or product support.
+          </p>
+        </div>
+      </div>
+
+      <section class="section-spacing">
+        <div class="container">
+          <div class="contact-grid">
+            <!-- Left Info Panel -->
+            <div class="contact-info-panel">
+              <h3 style="margin-bottom: 1.5rem;">Direct Inquiries</h3>
+              
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="contact-text">
+                  <h4>Phone & WhatsApp</h4>
+                  <p>Available for direct business inquiries</p>
+                  <a href="https://wa.me/?text=Hello%20Adaa%20Health%20Care%20Trading,%20I%20would%20like%20to%20enquire%20about%20your%20products." target="_blank" rel="noopener" class="btn btn-sm btn-secondary" style="margin-top: 0.5rem; display: inline-flex;">Message via WhatsApp</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="contact-text">
+                  <h4>Email Sourcing Team</h4>
+                  <p>Inquire directly about quotes, catalogue sheets, or distribution partnerships.</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div class="contact-text">
+                  <h4>Trading & Support Hours</h4>
+                  <p>Monday – Friday: Standard Commercial Hours</p>
+                  <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.2rem;">Inquiries received over the weekend are addressed the following business day.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Contact Form -->
+            <div class="contact-form-box">
+              <h3 style="margin-bottom: 0.5rem;">Send an Inquiry</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Fill out the form below and our trading desk will respond promptly.</p>
+              
+              <div id="contactSuccessMessage" class="alert-success">
+                Thank you. Your inquiry has been sent to Adaa Health Care Trading.
+              </div>
+
+              <form id="generalContactForm" onsubmit="handleGeneralFormSubmit(event)">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="contactName">Full Name *</label>
+                    <input type="text" id="contactName" class="form-control" placeholder="Dr. / Mr. / Ms." required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="contactPhone">Phone / Mobile *</label>
+                    <input type="tel" id="contactPhone" class="form-control" placeholder="Contact number" required />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contactEmail">Email Address *</label>
+                  <input type="email" id="contactEmail" class="form-control" placeholder="name@company.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contactCategory">Category of Interest</label>
+                  <select id="contactCategory" class="form-control">
+                    <option value="Medical Devices">Medical Devices</option>
+                    <option value="Medicines">Medicines</option>
+                    <option value="Nutritional Supplements">Nutritional Supplements</option>
+                    <option value="Skincare Products">Skincare Products</option>
+                    <option value="Derma Cosmetics">Derma Cosmetics</option>
+                    <option value="General Trade / Bulk Supply">General Trade / Bulk Supply</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="contactMessage">Message / Specific Requirements *</label>
+                  <textarea id="contactMessage" rows="4" class="form-control" placeholder="Please specify items, estimated quantities, or questions..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Submit Inquiry</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Dark Navy Global CTA Section -->
+    <section class="cta-dark-section">
+      <div class="container cta-container">
+        <h2>Looking for the right healthcare products?</h2>
+        <p>Talk to our team and let us help you find the right solution.</p>
+        <button class="btn btn-white" onclick="navigateTo('contact')">Get in Touch</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Product Enquiry Modal -->
+  <div class="modal-overlay" id="enquiryModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Product Enquiry</h3>
+        <button class="modal-close-btn" onclick="closeEnquiryModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-product-summary">
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-teal); font-weight: 600;" id="modalCategoryName">Category</span>
+          <strong id="modalProductName" style="font-size: 1.05rem; margin-top: 0.15rem;">Product Name</strong>
+        </div>
+
+        <div id="modalSuccessMessage" class="alert-success">
+          Thank you. Your inquiry has been noted. We will get in touch shortly.
+        </div>
+
+        <form id="productEnquiryForm" onsubmit="handleProductModalSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="modalClientName">Your Name *</label>
+            <input type="text" id="modalClientName" class="form-control" placeholder="Full name or company" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modalClientContact">Email or Phone *</label>
+            <input type="text" id="modalClientContact" class="form-control" placeholder="Contact number or email" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modalClientMessage">Inquiry Details</label>
+            <textarea id="modalClientMessage" rows="3" class="form-control" placeholder="Inquire about availability, order volumes, or specs..."></textarea>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+            <button type="submit" class="btn btn-primary btn-full">Submit Enquiry</button>
+            <button type="button" class="btn btn-secondary btn-full" id="modalWhatsAppBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #0D9488;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Enquire via WhatsApp
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-grid">
+        <!-- Col 1: Brand Info -->
+        <div class="footer-col">
+          <div style="margin-bottom: 1rem;">
+            <div class="brand-name" style="color: #ffffff;">ADAA</div>
+            <div class="brand-tag" style="color: #5EEAD4;">Health Care Trading</div>
+          </div>
+          <p style="color: #94A3B8; font-size: 0.9rem; line-height: 1.6;">
+            A supplier of dependable healthcare equipment and everyday wellness products. We work closely with reputable manufacturers to build a range that professionals and households can rely on.
+          </p>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="navigateTo('home'); return false;">Home</a></li>
+            <li><a href="#about" onclick="navigateTo('about'); return false;">About Us</a></li>
+            <li><a href="#products" onclick="navigateTo('products'); return false;">Products</a></li>
+            <li><a href="#why-us" onclick="navigateTo('why-us'); return false;">Why Us</a></li>
+            <li><a href="#contact" onclick="navigateTo('contact'); return false;">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Categories -->
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#category-medical-devices" onclick="navigateTo('category-medical-devices'); return false;">Medical Devices</a></li>
+            <li><a href="#category-medicines" onclick="navigateTo('category-medicines'); return false;">Medicines</a></li>
+            <li><a href="#category-supplements" onclick="navigateTo('category-supplements'); return false;">Nutritional Supplements</a></li>
+            <li><a href="#category-skincare" onclick="navigateTo('category-skincare'); return false;">Skincare Products</a></li>
+            <li><a href="#category-derma" onclick="navigateTo('category-derma'); return false;">Derma Cosmetics</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Positioning -->
+        <div class="footer-col">
+          <h4>Commercial Desk</h4>
+          <p style="color: #94A3B8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+            Direct inquiries for institutional procurement and wholesale accounts.
+          </p>
+          <a href="#contact" class="btn btn-outline-white btn-sm" onclick="navigateTo('contact'); return false;">Contact Sourcing Team</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div>
+          &copy; <span id="currentYear"></span> Adaa Health Care Trading. All rights reserved. Care you can count on.
+        </div>
+        <div class="footer-legal-links">
+          <a href="#about" onclick="navigateTo('about'); return false;">Privacy Policy</a>
+          <a href="#about" onclick="navigateTo('about'); return false;">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       CLIENT ROUTING & SCRIPT LOGIC
+       ========================================================== -->
+  <script>
+    // 1. Set Copyright Year Dynamically
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // 2. Client-Side Page Router
+    const routes = [
+      'home',
+      'about',
+      'products',
+      'why-us',
+      'contact',
+      'category-medical-devices',
+      'category-medicines',
+      'category-supplements',
+      'category-skincare',
+      'category-derma'
+    ];
+
+    function navigateTo(routeId) {
+      if (!routes.includes(routeId)) {
+        routeId = 'home';
+      }
+
+      // Hide all views
+      document.querySelectorAll('.view-page').forEach(page => {
+        page.classList.remove('active-view');
+      });
+
+      // Show selected view
+      const targetView = document.getElementById('view-' + routeId);
+      if (targetView) {
+        targetView.classList.add('active-view');
+      }
+
+      // Update Desktop Nav Links
+      document.querySelectorAll('.nav-desktop .nav-link').forEach(link => {
+        if (link.getAttribute('data-target') === routeId) {
+          link.classList.add('active');
+        } else {
+          // If in a subcategory, keep 'products' highlighted
+          if (routeId.startsWith('category-') && link.getAttribute('data-target') === 'products') {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        }
+      });
+
+      // Update Mobile Drawer Links
+      document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+        if (link.getAttribute('data-target') === routeId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      // Close mobile drawer if open
+      closeMobileMenu();
+
+      // Scroll smoothly to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Update browser URL hash without jump
+      if (history.pushState) {
+        history.pushState(null, null, '#' + routeId);
+      } else {
+        location.hash = '#' + routeId;
+      }
+    }
+
+    // Handle hash on initial load or back/forward buttons
+    function handleHashChange() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && routes.includes(hash)) {
+        navigateTo(hash);
+      } else {
+        navigateTo('home');
+      }
+    }
+
+    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('DOMContentLoaded', handleHashChange);
+
+    // 3. Mobile Navigation Drawer Controls
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileBtn = document.getElementById('closeMobileBtn');
+    const mobilePanel = document.getElementById('mobilePanel');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    function openMobileMenu() {
+      mobilePanel.classList.add('open');
+      mobileOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobilePanel.classList.remove('open');
+      mobileOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    closeMobileBtn.addEventListener('click', closeMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    // Mobile nav links router binding
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = this.getAttribute('data-target');
+        navigateTo(target);
+      });
+    });
+
+    // Desktop nav links router binding
+    document.querySelectorAll('.nav-desktop .nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = this.getAttribute('data-target');
+        navigateTo(target);
+      });
+    });
+
+    // 4. Product Enquiry Modal Logic
+    let currentEnquiryProduct = "";
+
+    function openEnquiryModal(productName, categoryName) {
+      currentEnquiryProduct = productName;
+      document.getElementById('modalProductName').textContent = productName;
+      document.getElementById('modalCategoryName').textContent = categoryName;
+      document.getElementById('modalSuccessMessage').style.display = 'none';
+      document.getElementById('productEnquiryForm').reset();
+      
+      // Configure WhatsApp button with specific product text
+      const waButton = document.getElementById('modalWhatsAppBtn');
+      const waMessage = `Hello Adaa Health Care Trading, I am interested in ${productName}. Please share availability and details.`;
+      waButton.onclick = function() {
+        window.open(`https://wa.me/?text=${encodeURIComponent(waMessage)}`, '_blank');
+      };
+
+      const modal = document.getElementById('enquiryModal');
+      modal.classList.add('active');
+    }
+
+    function closeEnquiryModal() {
+      const modal = document.getElementById('enquiryModal');
+      modal.classList.remove('active');
+    }
+
+    // Close modal on click outside card
+    window.addEventListener('click', function(e) {
+      const modal = document.getElementById('enquiryModal');
+      if (e.target === modal) {
+        closeEnquiryModal();
+      }
+    });
+
+    function handleProductModalSubmit(e) {
+      e.preventDefault();
+      const successBox = document.getElementById('modalSuccessMessage');
+      successBox.style.display = 'block';
+      setTimeout(() => {
+        closeEnquiryModal();
+      }, 2500);
+    }
+
+    function handleGeneralFormSubmit(e) {
+      e.preventDefault();
+      const successBox = document.getElementById('contactSuccessMessage');
+      successBox.style.display = 'block';
+      document.getElementById('generalContactForm').reset();
+    }
+  </script>
+</body>
+</html>
