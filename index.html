@@ -3017,18 +3017,38 @@ body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
         wrapLinks(root);
     }
 
-    toggleBtn.addEventListener('click', () => {
-        editOn = !editOn;
-        document.body.classList.toggle('adm-edit', editOn);
-        toggleBtn.textContent = 'Edit Mode: ' + (editOn ? 'On' : 'Off');
-        if (editOn) {
-            initAdminFeatures(document);
-            setStatus('Editing — click text to type, hover blocks/images for controls.');
-        } else {
-            setStatus(dirty ? 'Unsaved changes.' : 'Not editing');
+  function disableCardNavigation(root) {
+    $$('[onclick]', root || document).forEach(el => {
+        if (el.closest('#admPanel, .adm-modal-overlay')) return;
+        const oc = el.getAttribute('onclick') || '';
+        if (oc.includes('navigateTo')) {
+            el.setAttribute('data-adm-onclick', oc);
+            el.removeAttribute('onclick');
         }
-        populatePageSwitcher();
     });
+}
+
+function restoreCardNavigation(root) {
+    $$('[data-adm-onclick]', root || document).forEach(el => {
+        el.setAttribute('onclick', el.getAttribute('data-adm-onclick'));
+        el.removeAttribute('data-adm-onclick');
+    });
+}
+
+    toggleBtn.addEventListener('click', () => {
+    editOn = !editOn;
+    document.body.classList.toggle('adm-edit', editOn);
+    toggleBtn.textContent = 'Edit Mode: ' + (editOn ? 'On' : 'Off');
+    if (editOn) {
+        disableCardNavigation(document);      // <-- add this
+        initAdminFeatures(document);
+        setStatus('Editing — click text to type, hover blocks/images for controls.');
+    } else {
+        restoreCardNavigation(document);      // <-- add this
+        setStatus(dirty ? 'Unsaved changes.' : 'Not editing');
+    }
+    populatePageSwitcher();
+});
 
     /* ---------- dirty state ---------- */
     let dirty = false;
