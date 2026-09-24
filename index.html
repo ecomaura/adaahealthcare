@@ -1252,7 +1252,7 @@
     </div>
   </div>
 
-  <main>
+  <main id="app">
     <!-- ==========================================================
          VIEW: HOME
          ========================================================== -->
@@ -2410,6 +2410,823 @@
       document.getElementById('generalContactForm').reset();
     }
   </script>
+
+
+  <!-- ============================================================
+         ADMIN PANEL — visual editor + Cloudinary + GitHub auto-commit
+         Only visible when the page is loaded with ?admin in the URL
+         (or after being unlocked once on this browser).
+         Nothing here is a real security boundary — see notes in the
+         accompanying chat message before you rely on this in prod.
+    ============================================================= -->
+    <style>
+        .adm-hidden { display: none !important; }
+
+        #admGear {
+            position: fixed;
+            bottom: 14px;
+            left: 14px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #0A192F;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0.25;
+            z-index: 9998;
+            transition: opacity .2s ease;
+            border: none;
+        }
+        #admGear:hover { opacity: 1; }
+
+        #admPanel {
+            position: fixed;
+            bottom: 14px;
+            left: 14px;
+            z-index: 9999;
+            background: #0A192F;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.4);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            max-width: calc(100vw - 28px);
+            font-family: Inter, sans-serif;
+            font-size: 13px;
+        }
+        #admPanel button {
+            background: #172A45;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 6px;
+            padding: 7px 11px;
+            font-size: 12.5px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        #admPanel button:disabled { opacity: .35; cursor: not-allowed; }
+#admPanel button:disabled:hover { background: #172A45; }
+        #admPanel button:hover { background: #FF6B00; }
+        #admPanel button.adm-primary { background: #FF6B00; }
+        #admPanel button.adm-primary:hover { background: #E65A00; }
+        #admStatus {
+            font-size: 12px;
+            color: #8892B0;
+            max-width: 220px;
+        }
+
+        .adm-modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10,25,47,.75);
+            z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .adm-modal {
+            background: #fff;
+            color: #333;
+            width: 100%; max-width: 460px;
+            border-radius: 10px;
+            padding: 24px;
+            max-height: 90vh;
+            overflow-y: auto;
+            font-family: Inter, sans-serif;
+        }
+        .adm-modal h3 { margin-bottom: 6px; color: #0A192F; }
+        .adm-modal p.adm-note { font-size: 12.5px; color: #8892B0; margin-bottom: 16px; }
+        .adm-field { margin-bottom: 12px; }
+        .adm-field label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 4px; color: #0A192F; }
+        .adm-field input {
+            width: 100%; padding: 9px 10px; border: 1px solid #D1D5DB; border-radius: 5px; font-size: 13px;
+        }
+        .adm-modal-actions { display: flex; gap: 8px; margin-top: 18px; }
+        .adm-modal-actions button {
+            flex: 1; padding: 10px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; font-size: 13px;
+        }
+        .adm-btn-cancel { background: #E9ECEF; color: #333; }
+        .adm-btn-save { background: #FF6B00; color: #fff; }
+
+        /* Editable text */
+        body.adm-edit [data-adm-text] { cursor: text; }
+        body.adm-edit [data-adm-text]:hover { outline: 1px dashed #FF6B00; outline-offset: 2px; }
+        body.adm-edit [data-adm-text]:focus { outline: 2px solid #FF6B00; outline-offset: 2px; background: rgba(255,107,0,.05); }
+
+        /* Duplicatable / movable blocks */
+        body.adm-edit .adm-block { position: relative; }
+        body.adm-edit .adm-block:hover { outline: 1px dashed rgba(255,107,0,.6); outline-offset: 3px; }
+        .adm-block-toolbar {
+            display: none;
+            position: absolute;
+            top: 4px; right: 4px;
+            z-index: 500;
+            gap: 3px;
+            background: #0A192F;
+            border-radius: 5px;
+            padding: 3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,.3);
+        }
+        body.adm-edit .adm-block:hover > .adm-block-toolbar { display: flex; }
+        .adm-block-toolbar button {
+            width: 24px; height: 24px;
+            border: none; border-radius: 3px;
+            background: #172A45; color: #fff;
+            font-size: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            padding: 0;
+        }
+        .adm-block-toolbar button:hover { background: #FF6B00; }
+        .adm-block-toolbar button.adm-del:hover { background: #c0392b; }
+
+        /* Image swap overlay */
+        .adm-img-wrap { position: relative; }
+        .adm-img-btn {
+    display: none;
+    position: absolute;
+    bottom: 8px;   /* was: top: 8px */
+    right: 8px;
+    z-index: 50;
+    background: rgba(10,25,47,.85);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+        .adm-img-btn:hover { background: #FF6B00; }
+        body.adm-edit .adm-img-wrap:hover .adm-img-btn { display: block; }
+
+        .adm-link-btn {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 50;
+    background: rgba(10,25,47,.85);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.adm-link-btn:hover { background: #FF6B00; }
+body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
+    </style>
+
+    <button id="admGear" class="adm-hidden" title="Admin">⚙</button>
+
+    <div id="admPanel" class="adm-hidden">
+        <button id="admToggleEdit">Edit Mode: On</button>
+        <button id="admUndoBtn" title="Undo">↺ Undo</button>
+<button id="admRedoBtn" title="Redo" disabled="">↻ Redo</button>
+        <button id="admSettingsBtn">Settings</button>
+        <button id="admThemeBtn">Theme</button>
+        <button id="admDownloadBtn">Download HTML</button>
+        <button id="admCommitBtn" class="adm-primary">Commit to GitHub</button>
+        <span id="admStatus">Settings saved.</span>
+        <select id="admPageSwitch" style="background:#172A45;color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 8px;font-size:12.5px;"><option value="home">Engineering Solutions Built for Reliability</option><option value="about">About Us</option><option value="services">Our Services</option><option value="electrical">Electrical Control Panel Solutions</option><option value="stabilizer">Servo Stabilizer Services</option><option value="dg">DG Installation &amp; Maintenance</option><option value="industries">Industries We Serve</option><option value="contact">Contact Us</option><option value="quote">Request a Quotation</option><option value="home">Engineering Solutions Built for Reliability</option><option value="about">About Us</option><option value="services">Our Services</option><option value="electrical">Electrical Control Panel Solutions</option><option value="stabilizer">Servo Stabilizer Services</option><option value="dg">DG Installation &amp; Maintenance</option><option value="industries">Industries We Serve</option><option value="maintenance">Maintenance Solutions</option><option value="quality">Safety &amp; Quality Control</option><option value="contact">Contact Us</option><option value="quote">Request a Quotation</option></select>
+        <button id="admDeletePageBtn" title="Delete current page">Delete Page</button>
+        <button id="admCloseBtn" title="Hide panel">✕</button>
+    </div>
+
+   <script data-adm-script="">
+(function () {
+    'use strict';
+
+    /* ---------- small utils ---------- */
+    const $  = (s, r) => (r || document).querySelector(s);
+    const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+    function b64EncodeUnicode(str) {
+        return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    async function sha256Hex(text) {
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    /* ---------- config ---------- */
+    const CFG_KEY = 'admSiteConfig';
+    function getConfig() {
+        try { return JSON.parse(localStorage.getItem(CFG_KEY)) || {}; }
+        catch (e) { return {}; }
+    }
+    function saveConfig(cfg) {
+        localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+    }
+
+    // Default passphrase hash is for "admin123" — CHANGE THIS.
+    const GATE_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
+
+    /* ---------- gear / unlock ---------- */
+    const gear  = $('#admGear');
+    const panel = $('#admPanel');
+    const status = $('#admStatus');
+
+    function setStatus(msg) { status.textContent = msg; }
+
+    const params = new URLSearchParams(location.search);
+    const wantsAdmin = params.has('admin') || localStorage.getItem('admUnlocked') === '1';
+    if (wantsAdmin) gear.classList.remove('adm-hidden');
+    const savedCfg = getConfig();
+    if (savedCfg.theme) applyTheme(savedCfg.theme);
+
+    gear.addEventListener('click', async () => {
+        if (localStorage.getItem('admUnlocked') === '1') {
+            openPanel();
+            return;
+        }
+        const pass = prompt('Admin passphrase:');
+        if (pass === null) return;
+        const hash = await sha256Hex(pass);
+        if (hash === GATE_HASH) {
+            localStorage.setItem('admUnlocked', '1');
+            openPanel();
+        } else {
+            alert('Incorrect passphrase.');
+        }
+    });
+
+    /* ---------- ROUTE HELPERS (Adaa uses .view-page / .active-view / navigateTo) ---------- */
+    function currentRouteId() {
+        // Adaa keeps the current view as id="view-<route>" with class active-view
+        const active = $('.view-page.active-view');
+        return active ? active.id.replace('view-', '') : 'home';
+    }
+
+    function goToRoute(routeId) {
+        // Prefer the site's own router so nav highlighting / hash / scroll all stay in sync
+        if (typeof window.navigateTo === 'function') {
+            window.navigateTo(routeId);
+        } else {
+            // fallback if navigateTo isn't available for some reason
+            $$('.view-page').forEach(p => p.classList.remove('active-view'));
+            const target = document.getElementById('view-' + routeId);
+            if (target) target.classList.add('active-view');
+        }
+    }
+
+    function populatePageSwitcher() {
+        const select = $('#admPageSwitch');
+        const allPages = $$('.view-page');
+        select.innerHTML = allPages.map(p => {
+            const routeId = p.id.replace('view-', '');
+            const label = p.querySelector('h1')?.textContent.trim() || routeId;
+            return `<option value="${routeId}">${label}</option>`;
+        }).join('');
+        select.value = currentRouteId();
+    }
+
+    $('#admPageSwitch').addEventListener('change', (e) => {
+        goToRoute(e.target.value);
+    });
+
+    window.addEventListener('hashchange', () => {
+        const select = $('#admPageSwitch');
+        if (select) select.value = currentRouteId();
+    });
+
+    /* ---------- delete page ---------- */
+    $('#admDeletePageBtn').addEventListener('click', () => {
+        const currentId = currentRouteId();
+
+        if (currentId === 'home') {
+            alert('The Home page can\'t be deleted.');
+            return;
+        }
+
+        const targetPage = document.getElementById('view-' + currentId);
+        if (!targetPage) return;
+
+        const label = targetPage.querySelector('h1')?.textContent.trim() || currentId;
+        if (!confirm(`Delete the "${label}" page? This can't be undone until you reload without committing.\n\nNote: also remove "${currentId}" from the routes[] array in Adaa's own script, or the router will fall back to Home for this id.`)) {
+            return;
+        }
+
+        targetPage.remove();
+        $$(`a[data-target="${currentId}"]`).forEach(link => link.closest('li') ? link.closest('li').remove() : link.remove());
+
+        markDirty();
+        populatePageSwitcher();
+        goToRoute('home');
+    });
+
+    function openPanel() {
+        gear.classList.add('adm-hidden');
+        panel.classList.remove('adm-hidden');
+        populatePageSwitcher();
+    }
+    $('#admCloseBtn').addEventListener('click', () => {
+        panel.classList.add('adm-hidden');
+        gear.classList.remove('adm-hidden');
+    });
+
+    /* ---------- settings modal ---------- */
+    function openSettings() {
+        const cfg = getConfig();
+        const overlay = document.createElement('div');
+        overlay.className = 'adm-modal-overlay';
+        overlay.innerHTML = `
+            <div class="adm-modal">
+                <h3>Admin Settings</h3>
+                <p class="adm-note">Stored only in this browser (localStorage). Never committed to your repo. Use a GitHub fine-grained token scoped to just this repo's Contents (read/write).</p>
+
+                <div class="adm-field"><label>GitHub owner (username/org)</label>
+                    <input id="f_owner" value="${cfg.owner || ''}" placeholder="yourusername"></div>
+                <div class="adm-field"><label>Repository name</label>
+                    <input id="f_repo" value="${cfg.repo || ''}" placeholder="my-site"></div>
+                <div class="adm-field"><label>Branch</label>
+                    <input id="f_branch" value="${cfg.branch || 'main'}" placeholder="main"></div>
+                <div class="adm-field"><label>File path in repo</label>
+                    <input id="f_path" value="${cfg.path || 'index.html'}" placeholder="index.html"></div>
+                <div class="adm-field"><label>GitHub token (repo Contents: read/write)</label>
+                    <input id="f_token" type="password" value="${cfg.token || ''}" placeholder="github_pat_..."></div>
+                <div class="adm-field"><label>Cloudinary cloud name</label>
+                    <input id="f_cloud" value="${cfg.cloudName || ''}" placeholder="my-cloud-name"></div>
+                <div class="adm-field"><label>Cloudinary unsigned upload preset</label>
+                    <input id="f_preset" value="${cfg.uploadPreset || ''}" placeholder="unsigned_preset"></div>
+
+                <div class="adm-modal-actions">
+                    <button class="adm-btn-cancel" id="f_cancel">Cancel</button>
+                    <button class="adm-btn-save" id="f_save">Save</button>
+                </div>
+            </div>`;
+        document.body.appendChild(overlay);
+
+        $('#f_cancel', overlay).onclick = () => overlay.remove();
+        $('#f_save', overlay).onclick = () => {
+            saveConfig({
+                owner: $('#f_owner', overlay).value.trim(),
+                repo: $('#f_repo', overlay).value.trim(),
+                branch: $('#f_branch', overlay).value.trim() || 'main',
+                path: $('#f_path', overlay).value.trim() || 'index.html',
+                token: $('#f_token', overlay).value.trim(),
+                cloudName: $('#f_cloud', overlay).value.trim(),
+                uploadPreset: $('#f_preset', overlay).value.trim()
+            });
+            overlay.remove();
+            setStatus('Settings saved.');
+        };
+    }
+    $('#admSettingsBtn').addEventListener('click', openSettings);
+
+    /* ---------- theme editor ---------- */
+    const THEME_VARS = [
+        { key: '--primary-navy',        label: 'Primary Navy' },
+        { key: '--primary-navy-dark',   label: 'Primary Navy Dark' },
+        { key: '--accent-teal',         label: 'Accent Teal' },
+        { key: '--accent-teal-hover',   label: 'Accent Teal Hover' },
+        { key: '--text-main',           label: 'Body Text' },
+        { key: '--text-muted',          label: 'Muted Text' },
+        { key: '--bg-white',            label: 'Background (White)' },
+        { key: '--bg-surface',          label: 'Background (Surface)' }
+    ];
+
+    function getCurrentThemeValues() {
+        const styles = getComputedStyle(document.documentElement);
+        const values = {};
+        THEME_VARS.forEach(v => {
+            values[v.key] = styles.getPropertyValue(v.key).trim() || '#000000';
+        });
+        return values;
+    }
+
+    function applyTheme(values) {
+        Object.entries(values).forEach(([key, val]) => {
+            document.documentElement.style.setProperty(key, val);
+        });
+    }
+
+    function openThemeEditor() {
+        const current = getCurrentThemeValues();
+        const overlay = document.createElement('div');
+        overlay.className = 'adm-modal-overlay';
+        overlay.innerHTML = `
+            <div class="adm-modal">
+                <h3>Theme Colors</h3>
+                <p class="adm-note">Changes preview live. Click Save to keep them, or Cancel to revert.</p>
+                ${THEME_VARS.map(v => `
+                    <div class="adm-field" style="display:flex;align-items:center;justify-content:space-between;">
+                        <label style="margin-bottom:0;">${v.label}</label>
+                        <input type="color" id="theme_${v.key}" value="${toHex(current[v.key])}" style="width:44px;height:32px;border:none;padding:0;cursor:pointer;">
+                    </div>
+                `).join('')}
+                <div class="adm-modal-actions">
+                    <button class="adm-btn-cancel" id="theme_cancel">Cancel</button>
+                    <button class="adm-btn-save" id="theme_save">Save</button>
+                </div>
+            </div>`;
+        document.body.appendChild(overlay);
+
+        THEME_VARS.forEach(v => {
+            $('#theme_' + v.key, overlay).addEventListener('input', (e) => {
+                document.documentElement.style.setProperty(v.key, e.target.value);
+            });
+        });
+
+        $('#theme_cancel', overlay).onclick = () => {
+            applyTheme(current);
+            overlay.remove();
+        };
+
+        $('#theme_save', overlay).onclick = () => {
+            const newValues = {};
+            THEME_VARS.forEach(v => {
+                newValues[v.key] = $('#theme_' + v.key, overlay).value;
+            });
+            applyTheme(newValues);
+            const cfg = getConfig();
+            cfg.theme = newValues;
+            saveConfig(cfg);
+            overlay.remove();
+            markDirty();
+            setStatus('Theme updated — commit to save permanently.');
+        };
+    }
+
+    function toHex(val) {
+        if (/^#[0-9a-f]{3,8}$/i.test(val)) return val.length === 4
+            ? '#' + [...val.slice(1)].map(c => c + c).join('')
+            : val;
+        const ctx = document.createElement('canvas').getContext('2d');
+        ctx.fillStyle = val;
+        return ctx.fillStyle;
+    }
+
+    $('#admThemeBtn').addEventListener('click', openThemeEditor);
+
+    /* ---------- edit mode ---------- */
+    let editOn = false;
+    const toggleBtn = $('#admToggleEdit');
+
+    const TEXT_SELECTOR = [
+        '#app h1', '#app h2', '#app h3', '#app h4', '#app h5', '#app h6',
+        '#app p', '#app li', '#app .btn', '#app .brand-name', '#app .brand-tag',
+        '.nav-desktop a', '.mobile-nav-links a',
+        'footer h4', 'footer p', 'footer li', 'footer .footer-bottom'
+    ].join(', ');
+
+    const BLOCK_SELECTOR = [
+        '#app .category-card', '#app .product-card', '#app .pillar-item',
+        '#app .hero-card', '.footer-col'
+    ].join(', ');
+
+    function makeTextEditable(root) {
+        $$(TEXT_SELECTOR, root || document).forEach(el => {
+            if (el.closest('#admPanel, .adm-modal-overlay')) return;
+            el.setAttribute('contenteditable', 'true');
+            el.setAttribute('data-adm-text', '1');
+            if (!el._admDirtyBound) {
+                el.addEventListener('input', markDirty);
+                el._admDirtyBound = true;
+            }
+        });
+    }
+
+    function attachBlockToolbar(root) {
+        $$(BLOCK_SELECTOR, root || document).forEach(el => {
+            if (el.closest('#admPanel, .adm-modal-overlay')) return;
+            if (el.querySelector(':scope > .adm-block-toolbar')) return;
+            el.classList.add('adm-block');
+            const bar = document.createElement('div');
+            bar.className = 'adm-block-toolbar';
+            bar.innerHTML = `
+<button type="button" class="adm-dup" title="Duplicate">⧉</button>
+<button type="button" class="adm-up" title="Move up">↑</button>
+<button type="button" class="adm-down" title="Move down">↓</button>
+<button type="button" class="adm-code" title="Edit code">&lt;/&gt;</button>
+<button type="button" class="adm-del" title="Delete">✕</button>`;
+            el.insertBefore(bar, el.firstChild);
+
+            bar.querySelector('.adm-dup').onclick = (e) => { e.preventDefault(); duplicateBlock(el); };
+            bar.querySelector('.adm-up').onclick   = (e) => { e.preventDefault(); moveBlock(el, 'up'); };
+            bar.querySelector('.adm-down').onclick = (e) => { e.preventDefault(); moveBlock(el, 'down'); };
+            bar.querySelector('.adm-code').onclick = (e) => { e.preventDefault(); openBlockCodeEditor(el); };
+            bar.querySelector('.adm-del').onclick  = (e) => {
+                e.preventDefault();
+                if (confirm('Delete this block?')) { el.remove(); markDirty(); }
+            };
+        });
+    }
+
+    function openBlockCodeEditor(el) {
+        const overlay = document.createElement('div');
+        overlay.className = 'adm-modal-overlay';
+        const clean = el.cloneNode(true);
+        $$('.adm-block-toolbar, .adm-img-btn', clean).forEach(n => n.remove());
+
+        overlay.innerHTML = `
+            <div class="adm-modal" style="max-width:640px;">
+                <h3>Edit Block Code</h3>
+                <p class="adm-note">Edit the raw HTML for this block. Invalid HTML may break the layout.</p>
+                <textarea id="adm_code_textarea" style="width:100%;min-height:280px;font-family:monospace;font-size:12.5px;padding:10px;border:1px solid #D1D5DB;border-radius:5px;"></textarea>
+                <div class="adm-modal-actions">
+                    <button class="adm-btn-cancel" id="code_cancel">Cancel</button>
+                    <button class="adm-btn-save" id="code_apply">Apply</button>
+                </div>
+            </div>`;
+        document.body.appendChild(overlay);
+        $('#adm_code_textarea', overlay).value = clean.outerHTML;
+
+        $('#code_cancel', overlay).onclick = () => overlay.remove();
+        $('#code_apply', overlay).onclick = () => {
+            const newHTML = $('#adm_code_textarea', overlay).value.trim();
+            if (!newHTML) { alert('Block content can\'t be empty.'); return; }
+            const temp = document.createElement('div');
+            temp.innerHTML = newHTML;
+            const newEl = temp.firstElementChild;
+            if (!newEl) { alert('Couldn\'t parse that HTML.'); return; }
+            el.replaceWith(newEl);
+            initAdminFeatures(newEl.parentNode);
+            markDirty();
+            overlay.remove();
+        };
+    }
+
+    function duplicateBlock(el) {
+        const clone = el.cloneNode(true);
+        $$('.adm-block-toolbar, .adm-img-btn', clone).forEach(n => n.remove());
+        clone.classList.remove('adm-block');
+        el.parentNode.insertBefore(clone, el.nextSibling);
+        initAdminFeatures(clone);
+        markDirty();
+    }
+
+    function moveBlock(el, dir) {
+        if (dir === 'up' && el.previousElementSibling) {
+            el.parentNode.insertBefore(el, el.previousElementSibling);
+        } else if (dir === 'down' && el.nextElementSibling) {
+            el.parentNode.insertBefore(el.nextElementSibling, el);
+        }
+        markDirty();
+    }
+
+    function wrapImages(root) {
+        $$('img', root || document).forEach(img => {
+            if (img.closest('#admPanel, .adm-modal-overlay, .adm-img-wrap')) return;
+            const wrap = document.createElement('div');
+            wrap.className = 'adm-img-wrap';
+            img.parentNode.insertBefore(wrap, img);
+            wrap.appendChild(img);
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'adm-img-btn';
+            btn.textContent = '🖼️ Change Image';
+            btn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); openImagePicker(img, 'img'); };
+            wrap.appendChild(btn);
+        });
+    }
+
+    function wrapLinks(root) {
+        $$('a[href]', root || document).forEach(a => {
+            if (a.closest('#admPanel, .adm-modal-overlay')) return;
+            if (a.hasAttribute('data-adm-link')) return;
+            a.setAttribute('data-adm-link', '1');
+            a.style.position = a.style.position || 'relative';
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'adm-link-btn';
+            btn.textContent = '🔗';
+            btn.title = 'Edit link URL';
+            btn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const current = a.getAttribute('href') || '';
+                const next = prompt('Link URL (e.g. #contact or https://...)', current);
+                if (next !== null && next.trim() !== '') {
+                    a.setAttribute('href', next.trim());
+                    markDirty();
+                }
+            };
+            a.appendChild(btn);
+        });
+    }
+
+    function initAdminFeatures(root) {
+        makeTextEditable(root);
+        attachBlockToolbar(root);
+        wrapImages(root);
+        wrapLinks(root);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        editOn = !editOn;
+        document.body.classList.toggle('adm-edit', editOn);
+        toggleBtn.textContent = 'Edit Mode: ' + (editOn ? 'On' : 'Off');
+        if (editOn) {
+            initAdminFeatures(document);
+            setStatus('Editing — click text to type, hover blocks/images for controls.');
+        } else {
+            setStatus(dirty ? 'Unsaved changes.' : 'Not editing');
+        }
+        populatePageSwitcher();
+    });
+
+    /* ---------- dirty state ---------- */
+    let dirty = false;
+    function markDirty() {
+        dirty = true;
+        setStatus('Unsaved changes — click "Commit to GitHub" to publish.');
+        scheduleHistorySnapshot();
+    }
+
+    let historyStack = [];
+    let historyIndex = -1;
+    let historyTimer = null;
+    const MAX_HISTORY = 50;
+
+    function pushHistorySnapshot() {
+        const app = document.getElementById('app');
+        if (!app) return;
+        const snapshot = { html: app.innerHTML, route: currentRouteId() };
+        const last = historyStack[historyIndex];
+        if (last && last.html === snapshot.html && last.route === snapshot.route) return;
+        historyStack = historyStack.slice(0, historyIndex + 1);
+        historyStack.push(snapshot);
+        if (historyStack.length > MAX_HISTORY) historyStack.shift();
+        historyIndex = historyStack.length - 1;
+        updateUndoRedoButtons();
+    }
+
+    function scheduleHistorySnapshot() {
+        clearTimeout(historyTimer);
+        historyTimer = setTimeout(pushHistorySnapshot, 400);
+    }
+
+    function restoreHistory(index) {
+        const app = document.getElementById('app');
+        if (!app || index < 0 || index >= historyStack.length) return;
+        const entry = historyStack[index];
+        app.innerHTML = entry.html;
+        goToRoute(entry.route);
+        historyIndex = index;
+        initAdminFeatures(app);
+        populatePageSwitcher();
+        updateUndoRedoButtons();
+        setStatus('Restored.');
+    }
+
+    function undo() { if (historyIndex > 0) restoreHistory(historyIndex - 1); }
+    function redo() { if (historyIndex < historyStack.length - 1) restoreHistory(historyIndex + 1); }
+
+    function updateUndoRedoButtons() {
+        $('#admUndoBtn').disabled = historyIndex <= 0;
+        $('#admRedoBtn').disabled = historyIndex >= historyStack.length - 1;
+    }
+
+    $('#admUndoBtn').addEventListener('click', undo);
+    $('#admRedoBtn').addEventListener('click', redo);
+
+    /* ---------- Cloudinary image swap ---------- */
+    let cloudinaryLoaded = false;
+    function loadCloudinaryScript() {
+        return new Promise((resolve, reject) => {
+            if (cloudinaryLoaded && window.cloudinary) return resolve();
+            const s = document.createElement('script');
+            s.src = 'https://upload-widget.cloudinary.com/global/all.js';
+            s.onload = () => { cloudinaryLoaded = true; resolve(); };
+            s.onerror = reject;
+            document.head.appendChild(s);
+        });
+    }
+
+    async function openImagePicker(el, type) {
+        const cfg = getConfig();
+        if (!cfg.cloudName || !cfg.uploadPreset) {
+            alert('Add your Cloudinary cloud name and unsigned upload preset in Settings first.');
+            openSettings();
+            return;
+        }
+        try {
+            await loadCloudinaryScript();
+        } catch (e) {
+            alert('Could not load the Cloudinary widget script.');
+            return;
+        }
+        const widget = window.cloudinary.createUploadWidget(
+            { cloudName: cfg.cloudName, uploadPreset: cfg.uploadPreset, sources: ['local', 'url', 'camera'], cropping: true, multiple: false },
+            (error, result) => {
+                if (!error && result && result.event === 'success') {
+                    const url = result.info.secure_url;
+                    if (type === 'img') {
+                        el.src = url;
+                    } else {
+                        el.style.backgroundImage = `url('${url}')`;
+                    }
+                    markDirty();
+                }
+            }
+        );
+        widget.open();
+    }
+
+    /* ---------- serialize clean HTML ---------- */
+    function serializeCleanHTML() {
+        const docClone = document.cloneNode(true);
+
+        $$('.adm-block-toolbar, .adm-img-btn', docClone).forEach(n => n.remove());
+        $$('.adm-link-btn', docClone).forEach(n => n.remove());
+        $$('[data-adm-link]', docClone).forEach(n => n.removeAttribute('data-adm-link'));
+        $$('.adm-img-wrap', docClone).forEach(w => {
+            const inner = w.querySelector('img') || w.firstElementChild;
+            if (inner) w.replaceWith(inner); else w.remove();
+        });
+        $$('[contenteditable]', docClone).forEach(n => n.removeAttribute('contenteditable'));
+        $$('[data-adm-text]', docClone).forEach(n => n.removeAttribute('data-adm-text'));
+        $$('.adm-block', docClone).forEach(n => n.classList.remove('adm-block'));
+        docClone.body.classList.remove('adm-edit');
+        $$('.adm-modal-overlay', docClone).forEach(n => n.remove());
+        const p = docClone.getElementById('admPanel');
+        if (p) p.classList.add('adm-hidden');
+        const g = docClone.getElementById('admGear');
+        if (g) g.classList.add('adm-hidden');
+
+        return '<!DOCTYPE html>\n' + docClone.documentElement.outerHTML;
+    }
+
+    /* ---------- download fallback ---------- */
+    $('#admDownloadBtn').addEventListener('click', () => {
+        const html = serializeCleanHTML();
+        const blob = new Blob([html], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'index.html';
+        a.click();
+        setStatus('Downloaded — upload it to your repo manually if you skip GitHub commit.');
+    });
+
+    /* ---------- commit to GitHub ---------- */
+    $('#admCommitBtn').addEventListener('click', async () => {
+        const cfg = getConfig();
+        if (!cfg.owner || !cfg.repo || !cfg.token) {
+            alert('Fill in GitHub owner, repo, and token in Settings first.');
+            openSettings();
+            return;
+        }
+        const path = cfg.path || 'index.html';
+        const branch = cfg.branch || 'main';
+        const html = serializeCleanHTML();
+
+        try {
+            setStatus('Fetching current file…');
+            const getResp = await fetch(
+                `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branch)}`,
+                { headers: { Authorization: `token ${cfg.token}`, Accept: 'application/vnd.github+json' } }
+            );
+            let sha;
+            if (getResp.ok) {
+                sha = (await getResp.json()).sha;
+            } else if (getResp.status !== 404) {
+                throw new Error('Could not read current file (status ' + getResp.status + ')');
+            }
+
+            setStatus('Committing…');
+            const putResp = await fetch(
+                `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(path)}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        Authorization: `token ${cfg.token}`,
+                        Accept: 'application/vnd.github+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Update site via admin panel — ' + new Date().toISOString(),
+                        content: b64EncodeUnicode(html),
+                        branch: branch,
+                        sha: sha
+                    })
+                }
+            );
+            if (!putResp.ok) {
+                const err = await putResp.json().catch(() => ({}));
+                throw new Error(err.message || ('GitHub API error ' + putResp.status));
+            }
+            dirty = false;
+            setStatus('✅ Committed! GitHub Pages will redeploy in ~30–60s.');
+        } catch (err) {
+            setStatus('❌ Commit failed: ' + err.message);
+        }
+    });
+
+    /* ---------- warn before leaving with unsaved changes ---------- */
+    pushHistorySnapshot();
+    window.addEventListener('beforeunload', (e) => {
+        if (dirty) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+})();
+</script>
 </body>
 </html>
 
