@@ -2426,7 +2426,21 @@
     ============================================================= -->
     <style>
         .adm-hidden { display: none !important; }
+/* Fix: page couldn't scroll while in edit mode */
+body.adm-edit {
+    overflow: auto !important;
+    height: auto !important;
+}
 
+body.adm-edit [data-adm-text],
+body.adm-edit .adm-block {
+    touch-action: pan-y;
+}
+
+body.adm-edit [contenteditable]:not(:focus) {
+    -webkit-user-select: none;
+    user-select: none;
+}
         #admGear {
             position: fixed;
             bottom: 14px;
