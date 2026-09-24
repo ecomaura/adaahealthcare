@@ -2656,17 +2656,14 @@ body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
 
     /* ---------- ROUTE HELPERS (Adaa uses .view-page / .active-view / navigateTo) ---------- */
     function currentRouteId() {
-        // Adaa keeps the current view as id="view-<route>" with class active-view
         const active = $('.view-page.active-view');
         return active ? active.id.replace('view-', '') : 'home';
     }
 
     function goToRoute(routeId) {
-        // Prefer the site's own router so nav highlighting / hash / scroll all stay in sync
         if (typeof window.navigateTo === 'function') {
             window.navigateTo(routeId);
         } else {
-            // fallback if navigateTo isn't available for some reason
             $$('.view-page').forEach(p => p.classList.remove('active-view'));
             const target = document.getElementById('view-' + routeId);
             if (target) target.classList.add('active-view');
@@ -2862,6 +2859,25 @@ body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
 
     $('#admThemeBtn').addEventListener('click', openThemeEditor);
 
+    /* ---------- disable/restore card onclick navigation while editing ---------- */
+    function disableCardNavigation(root) {
+        $$('[onclick]', root || document).forEach(el => {
+            if (el.closest('#admPanel, .adm-modal-overlay')) return;
+            const oc = el.getAttribute('onclick') || '';
+            if (oc.includes('navigateTo')) {
+                el.setAttribute('data-adm-onclick', oc);
+                el.removeAttribute('onclick');
+            }
+        });
+    }
+
+    function restoreCardNavigation(root) {
+        $$('[data-adm-onclick]', root || document).forEach(el => {
+            el.setAttribute('onclick', el.getAttribute('data-adm-onclick'));
+            el.removeAttribute('data-adm-onclick');
+        });
+    }
+
     /* ---------- edit mode ---------- */
     let editOn = false;
     const toggleBtn = $('#admToggleEdit');
@@ -2921,6 +2937,10 @@ body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
         overlay.className = 'adm-modal-overlay';
         const clean = el.cloneNode(true);
         $$('.adm-block-toolbar, .adm-img-btn', clean).forEach(n => n.remove());
+        $$('[data-adm-onclick]', clean).forEach(n => {
+            n.setAttribute('onclick', n.getAttribute('data-adm-onclick'));
+            n.removeAttribute('data-adm-onclick');
+        });
 
         overlay.innerHTML = `
             <div class="adm-modal" style="max-width:640px;">
@@ -2944,6 +2964,7 @@ body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
             const newEl = temp.firstElementChild;
             if (!newEl) { alert('Couldn\'t parse that HTML.'); return; }
             el.replaceWith(newEl);
+            disableCardNavigation(newEl.parentNode);
             initAdminFeatures(newEl.parentNode);
             markDirty();
             overlay.remove();
@@ -2955,6 +2976,7 @@ body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
         $$('.adm-block-toolbar, .adm-img-btn', clone).forEach(n => n.remove());
         clone.classList.remove('adm-block');
         el.parentNode.insertBefore(clone, el.nextSibling);
+        disableCardNavigation(clone);
         initAdminFeatures(clone);
         markDirty();
     }
@@ -3017,38 +3039,20 @@ body.adm-edit a[data-adm-link]:hover .adm-link-btn { display: block; }
         wrapLinks(root);
     }
 
-  function disableCardNavigation(root) {
-    $$('[onclick]', root || document).forEach(el => {
-        if (el.closest('#admPanel, .adm-modal-overlay')) return;
-        const oc = el.getAttribute('onclick') || '';
-        if (oc.includes('navigateTo')) {
-            el.setAttribute('data-adm-onclick', oc);
-            el.removeAttribute('onclick');
-        }
-    });
-}
-
-function restoreCardNavigation(root) {
-    $$('[data-adm-onclick]', root || document).forEach(el => {
-        el.setAttribute('onclick', el.getAttribute('data-adm-onclick'));
-        el.removeAttribute('data-adm-onclick');
-    });
-}
-
     toggleBtn.addEventListener('click', () => {
-    editOn = !editOn;
-    document.body.classList.toggle('adm-edit', editOn);
-    toggleBtn.textContent = 'Edit Mode: ' + (editOn ? 'On' : 'Off');
-    if (editOn) {
-        disableCardNavigation(document);      // <-- add this
-        initAdminFeatures(document);
-        setStatus('Editing — click text to type, hover blocks/images for controls.');
-    } else {
-        restoreCardNavigation(document);      // <-- add this
-        setStatus(dirty ? 'Unsaved changes.' : 'Not editing');
-    }
-    populatePageSwitcher();
-});
+        editOn = !editOn;
+        document.body.classList.toggle('adm-edit', editOn);
+        toggleBtn.textContent = 'Edit Mode: ' + (editOn ? 'On' : 'Off');
+        if (editOn) {
+            disableCardNavigation(document);
+            initAdminFeatures(document);
+            setStatus('Editing — click text to type, hover blocks/images for controls.');
+        } else {
+            restoreCardNavigation(document);
+            setStatus(dirty ? 'Unsaved changes.' : 'Not editing');
+        }
+        populatePageSwitcher();
+    });
 
     /* ---------- dirty state ---------- */
     let dirty = false;
@@ -3088,6 +3092,7 @@ function restoreCardNavigation(root) {
         app.innerHTML = entry.html;
         goToRoute(entry.route);
         historyIndex = index;
+        if (editOn) disableCardNavigation(app);
         initAdminFeatures(app);
         populatePageSwitcher();
         updateUndoRedoButtons();
@@ -3155,6 +3160,10 @@ function restoreCardNavigation(root) {
         $$('.adm-block-toolbar, .adm-img-btn', docClone).forEach(n => n.remove());
         $$('.adm-link-btn', docClone).forEach(n => n.remove());
         $$('[data-adm-link]', docClone).forEach(n => n.removeAttribute('data-adm-link'));
+        $$('[data-adm-onclick]', docClone).forEach(n => {
+            n.setAttribute('onclick', n.getAttribute('data-adm-onclick'));
+            n.removeAttribute('data-adm-onclick');
+        });
         $$('.adm-img-wrap', docClone).forEach(w => {
             const inner = w.querySelector('img') || w.firstElementChild;
             if (inner) w.replaceWith(inner); else w.remove();
